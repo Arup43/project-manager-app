@@ -17,7 +17,6 @@ export const teamApi = apiSlice.injectEndpoints({
                 body: data,
             }),
             async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-                console.log(arg);
                 const addedTeam = await queryFulfilled;
                 dispatch(
                     apiSlice.util.updateQueryData(
