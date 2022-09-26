@@ -5,35 +5,38 @@ import Error from '../ui/Error';
 
 export default function CreateTeamModal({ open, control }) {
 
-    const {user} = useSelector(state => state.auth) || {};
-    const {email} = user || {};
+    const { user } = useSelector(state => state.auth) || {};
+    const { email } = user || {};
 
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [color, setColor] = useState('#000000');
 
-    const [addTeam, {isSuccess, isLoading, isError}] = useAddTeamMutation();
+    const [addTeam, { isSuccess, isLoading, isError }] = useAddTeamMutation();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         addTeam({
-            name,
-            description,
-            color,
-            participants: email,
-            timestamp: new Date().getTime(),
+            data: {
+                name,
+                description,
+                color,
+                participants: email,
+                timestamp: new Date().getTime(),
+            },
+            email: email
         });
     }
 
     useEffect(() => {
-        if(isSuccess) {
+        if (isSuccess) {
             setName('');
             setDescription('');
             setColor('#000000');
             control();
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isSuccess]);
 
     return (

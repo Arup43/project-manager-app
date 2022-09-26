@@ -11,17 +11,18 @@ export const teamApi = apiSlice.injectEndpoints({
             query: (name) => `/teams?name=${name}`,
         }),
         addTeam: builder.mutation({
-            query: (data) => ({
+            query: ({data, email}) => ({
                 url: "/teams",
                 method: "POST",
                 body: data,
             }),
             async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+                console.log(arg);
                 const addedTeam = await queryFulfilled;
                 dispatch(
                     apiSlice.util.updateQueryData(
                         "getTeams",
-                        arg.participants,
+                        arg.email,
                         draft => {
                             draft.unshift(addedTeam.data);
                         }
