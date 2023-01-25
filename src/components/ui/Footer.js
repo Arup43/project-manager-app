@@ -9,9 +9,9 @@ export default function Footer() {
             <div
                 className="flex items-center justify-center w-6 h-6 bg-blue-500 rounded-full"
             >
-                <h1 className='text-3xl font-bold text-indigo-600'><i class="fa-solid fa-diagram-project"></i> Project Management</h1>
+                <i class="fa-solid fa-diagram-project"></i>
             </div>
-            <span className="ml-1 text-sm leading-none">Learn with Sumit</span>
+            <span className="ml-1 text-sm leading-none">Project manager</span>
         </h1>
     )
 }
